@@ -1,0 +1,112 @@
+{
+    "asyncapi": "2.6.0",
+    "id": "urn:com.ryder.itfactory/v/1.0",
+    "info": {
+        "title": "SCS.ROL.Load.Blob.Tender.Services.Carrier",
+        "version": "1.0.0",
+        "description": "Example of the declaration of service tags.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "contact": {
+            "name": "IT Facory Support",
+            "url": "http://www.ryder.com/support",
+            "email": "itfactory@ryder.com"
+        }
+    },
+    "defaultContentType": "application/json",
+    "tags": [
+        {
+            "name": "docs",
+            "description": "documentation for the object to be generated and/or at least the generic type docs.",
+            "externalDocs": {
+                "description": "External docs",
+                "url": "https://rydertruck.sharepoint.com/sites/SCS/Channels"
+            }
+        },
+		{
+            "name": "template",
+            "description": "pkg",
+            "externalDocs": {
+                "description": "service-function",
+                "url": "https://pkgs.dev.azure.com/rydercore/service-function/"
+            }
+        },
+        {
+            "name": "generate",
+            "description": "if this tag is present, execute the ITF generator w/ the declared template. If not present, store this spec for later generation."
+        },
+        {
+            "name": "iac",
+            "description": "Optional: if this tag is present, leverage the IAC script template referenced in the externaldocs tag before generating the spec."
+        }
+    ],
+    "servers": {
+        "development": {
+            "url": "https://rydercore.rol.ryder.com/",
+            "protocol": "https",
+            "protocolVersion": "1.0",
+            "description": "an api definition"
+        },
+        "logging": {
+            "url": "https://rydercore.logging.net/",
+            "protocol": "https",
+            "protocolVersion": "2.0"
+        }
+    },
+	"channels":{
+		  "publish": {
+			"x-function": {"type":"eventhub", "trigger":"hubname","connection":"EVENTHUBLISTEN"},
+			"x-containerapp": false,
+			"x-operations": [
+                {
+						"name":"GetData",
+                        "verb": "get",
+                        "route": null       
+                },
+                {
+						"name":"PostData",
+                        "verb": "post",
+                        "route": null
+                    
+                },
+                {
+						"name":"PutData",
+                        "verb": "put",
+                        "route": null
+                },
+                {
+						"name":"DeleteData",
+                        "verb": "delete",
+                        "route": null
+                }
+			]
+		}
+	},
+	"x-azure": [
+	{
+		"name":"region",
+		"value":"WESTUS"
+	},
+	{
+		"name":"resourceGroupName",
+		"value":"rg_itf_QA"
+	},
+	{
+		"name":"workerType",
+		"value":"Linux"
+	},
+	{
+		"name":"storageSku",
+		"value":"Standard_XXX"
+	},
+	{
+		"name":"planSku",
+		"value":"B4"
+	},	
+	{
+		"name":"runTime",
+		"value":"Ubuntu"
+	}]
+}
